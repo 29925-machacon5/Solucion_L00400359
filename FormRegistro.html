@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>LOGÍSTICA</title>
+  <script type="text/javascript">
+    function mov(x){
+      let divCDR = document.getElementById('confi');
+      divCDR.style.display = (x === 1) ? "" : "none";
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <fieldset>
+      <legend>DIRECCIÓN DE ENVÍO</legend>
+      Calle Principal <br>
+      <input type="text" name="txtPrincipal">
+      <br><br>
+
+      Transversal<br>
+      <input type="text" name="txtTransversal">
+      <br><br>
+
+      <input type="radio" name="chbEntrega" value="PROPIETARIO" onclick="SubmitDireccion.disabled = !this.checked; mov(0)"> Entrega al propietario.<br>
+      <input type="radio" name="chbEntrega" value="TERCERO" onclick="SubmitDireccion.disabled = this.checked; mov(1)"> Entrega a un tercero.
+      <br><br>
+
+      Cantones:
+      <select name="cmbCantones">
+        <optgroup label="PICHINCHA">
+          <option value="Quito">Quito</option>
+          <option value="Rumiñahui">Rumiñahui</option>
+          <option value="Mejía">Mejía</option>
+        </optgroup>
+
+        <optgroup label="GUAYAS">
+          <option value="Guayaquil">Guayaquil</option>
+          <option value="Santa Elena">Santa Elena</option>
+          <option value="Salinas">Salinas</option>
+        </optgroup>
+      </select>
+      <br><br>
+
+      <input type="submit" id="SubmitDireccion" value="ENVIAR DATOS">
+    </fieldset>
+
+    <br>
+
+    <div id="confi" style="display: none;">
+      <fieldset>
+        <legend>INFORMACIÓN CONFIDENCIAL</legend>
+        Código Postal:
+        <input type="password" name="pswCodigoPostal">
+        <br><br>
+
+        Referencia de la Dirección:<br>
+        <textarea name="Mensaje" rows="3" cols="30"></textarea>
+        <br><br>
+
+        <input type="submit" value="Guardar">
+      </fieldset>
+    </div>
+  </form>
+</body>
+</html>
