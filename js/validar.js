@@ -1,74 +1,36 @@
 ﻿function validar() {
-	// body...
-	var correo, telefono, expresion;
-	
-	correo= document.getElementById('txtEmail').value;
-	telefono= document.getElementById('txtTelefono').value;
-	expresion= /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
-	var ventana_secundaria;
-	
-	/*if(checkSubmit()){
-		alert("Script checkSubmit() ejecutado correctamente");
-	}
-	else{
-		alert("Script checkSubmit() No se ejecuto correctamente");
-	}*/
+  // Obtener los valores de los campos
+  var correo = document.getElementById('txtEmail').value;
+  var telefono = document.getElementById('txtTelefono').value;
 
-	if(!expresion.test(correo)){
-		alert("El correo no es válido");
-		return false;
-	}/*
-	else{
-		alert("Correo válido");
-		return true;
-	}*/
-	
-	//Teléfono
-	if(telefono.length!=10){
-		alert("El telefono no es correcto");
-		return false;
-	}
-	else if(isNaN(telefono)){
-		alert("El telefono ingresado no es un número");
-		return false;
-	}
-	else{
-		alert("Datos ingresados correctamente");
-		if (checkSubmit()){
-			alert("Ejecutado checkSubmit() correctamente....");
-			
-			window.open('FormContactoEnviado.html');
-			return true;
-		}else{
-			alert("Script checkSubmit() No se ejecuto correctamente");
-			return true;
-		}
-	}	
+  // Expresión regular para correo electrónico
+  var expresion = /^[a-z][\w.-]+@\w[\w.-]+\.[\w.-]*[a-z][a-z]$/i;
+
+  // === Validación de correo electrónico ===
+  if (!expresion.test(correo)) {
+    alert("El correo electrónico no es válido.");
+    return false;
+  }
+
+  // === Validación de teléfono (10 dígitos numéricos) ===
+  if (telefono.length != 10 || isNaN(telefono)) {
+    alert("El teléfono debe contener exactamente 10 dígitos numéricos.");
+    return false;
+  }
+
+  // Si todo es válido
+  alert("Datos ingresados correctamente.");
+  checkSubmit();
+  return true;
 }
-
 
 function checkSubmit() {
-    document.getElementById("btnEnviar").value = "Enviado los datos correctamente";
-    document.getElementById("btnEnviar").disabled = true;
-    window.close();
-    return true;
-    
+  // Deshabilitar botón y cambiar mensaje
+  var boton = document.getElementById("btnEnviar");
+  boton.disabled = true;
+  boton.value = "Enviando datos ........";
 
-    //EJECUTAR CONTACTO (invocar al archivo.html en js)
-    /*window.open('FormContactoEnviado.html');*/
-    /*window.close();*/
-
+  // Enviar formulario
+  boton.form.submit();
 }
 
-
-/*function isNaN(dato){
-	for (bandera=true,i=0; i<= dato.length(); i++){
-		if (isdigit((char)dato[i]))
-			continue
-		else{
-			bandera = false;
-			break;
-		}
-	}
-	return (!bandera);
-}*/
